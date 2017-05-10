@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  bigchaindb:
+    restart: always
+    image: bigchaindb/bigchaindb:latest
+    ports:
+      - "59984:9984"
+    volumes:
+      - "./bigchain_docker_data:/data"
+    depends_on:
+      - rethinkdb
+  rethinkdb:
+    restart: always
+    image: rethinkdb:2.3
+    volumes:
+      - "./bigchain_docker_data:/data"
+    ports:
+      - "28015:28015"
+      - "58080:8080"
+  
+    
+    
